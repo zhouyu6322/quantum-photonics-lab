@@ -1,65 +1,219 @@
-import Image from "next/image";
+import Link from 'next/link';
+import Image from 'next/image';
+import { getTeamMembers, getNews, getPublications } from '@/lib/notion';
+import TeamMemberCard from '@/components/TeamMemberCard';
+import NewsCard from '@/components/NewsCard';
 
-export default function Home() {
+export const revalidate = 3600; // ISR: 每小时重新生成
+
+export default async function HomePage() {
+  // 获取数据（可能为空，如果 Notion 还未配置）
+  const [teamMembers, news, recentPublications] = await Promise.all([
+    getTeamMembers('Active').catch(() => []),
+    getNews(3).catch(() => []),
+    getPublications(undefined, 5).catch(() => []),
+  ]);
+
+  const pi = teamMembers.filter(m => m.role === 'PI');
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 text-white overflow-hidden">
+        {/* 背景装饰 Logo - 右上角 */}
+        <div className="absolute right-0 top-0 w-80 h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] opacity-10 -mr-20 -mt-20">
+          <Image
+            src="/images/hit-logo.png"
+            alt=""
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Quantum Photonics Lab
+            </h1>
+            <p className="text-xl md:text-2xl mb-4 text-blue-100">
+              量子光子学课题组
+            </p>
+            <p className="text-lg md:text-xl mb-8 text-blue-50 leading-relaxed">
+              哈尔滨工业大学（深圳）| Harbin Institute of Technology, Shenzhen
+            </p>
+            <p className="text-base md:text-lg text-blue-100 mb-10 leading-relaxed max-w-3xl">
+              专注于碳化硅色心、金刚石色心、固态量子缺陷等量子光学前沿研究，
+              致力于推动量子信息技术的发展与应用。
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/research"
+                className="bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+              >
+                Our Research
+              </Link>
+              <Link
+                href="/team"
+                className="bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900 transition-colors border-2 border-blue-600"
+              >
+                Meet the Team
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Research Highlights */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
+            Research Highlights
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: '碳化硅色心',
+                description: 'Silicon carbide color centers for quantum applications',
+                icon: '🔬',
+              },
+              {
+                title: '金刚石色心',
+                description: 'Diamond NV centers and quantum sensing',
+                icon: '💎',
+              },
+              {
+                title: '固态量子缺陷',
+                description: 'Solid-state quantum defects and quantum networks',
+                icon: '⚛️',
+              },
+            ].map((area, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-8 hover:shadow-lg transition-shadow"
+              >
+                <div className="text-5xl mb-4">{area.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  {area.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {area.description}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link
+              href="/research"
+              className="inline-block text-blue-600 hover:text-blue-800 font-semibold"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              Explore All Research Areas →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Preview */}
+      {pi.length > 0 && (
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
+              Principal Investigator
+            </h2>
+            <div className="max-w-md mx-auto">
+              <TeamMemberCard member={pi[0]} />
+            </div>
+            <div className="text-center mt-10">
+              <Link
+                href="/team"
+                className="inline-block text-blue-600 hover:text-blue-800 font-semibold"
+              >
+                View Full Team →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Recent Publications */}
+      {recentPublications.length > 0 && (
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
+              Recent Publications
+            </h2>
+            <div className="max-w-4xl mx-auto space-y-6">
+              {recentPublications.slice(0, 3).map((pub) => (
+                <div
+                  key={pub.id}
+                  className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors"
+                >
+                  <h3 className="font-semibold text-gray-900 mb-2">
+                    {pub.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-2">
+                    {pub.authors}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    <span className="italic">{pub.journal}</span> ({pub.year})
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="text-center mt-10">
+              <Link
+                href="/publications"
+                className="inline-block text-blue-600 hover:text-blue-800 font-semibold"
+              >
+                View All Publications →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Latest News */}
+      {news.length > 0 && (
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
+              Latest News
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {news.map((item) => (
+                <NewsCard key={item.id} news={item} />
+              ))}
+            </div>
+            <div className="text-center mt-10">
+              <Link
+                href="/news"
+                className="inline-block text-blue-600 hover:text-blue-800 font-semibold"
+              >
+                View All News →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Join Our Research Group
+          </h2>
+          <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+            We are always looking for motivated students and postdocs
+            to join our quantum photonics research team.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/about"
+            className="inline-block bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Contact Us
+          </Link>
         </div>
-      </main>
+      </section>
     </div>
   );
 }
