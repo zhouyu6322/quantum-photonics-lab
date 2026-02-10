@@ -18,6 +18,42 @@ const TEAM_DB = process.env.NOTION_DATABASE_TEAM || '';
 // ============================================================
 const publications = [
   {
+    title: 'Strain-Enhanced Spin Readout Contrast in Silicon Carbide Membranes',
+    authors: 'Haibo Hu, Guodong Bian, Ailun Yi, Chunhui Jiang, Junhua Tan, Qi Luo, Bo Liang, Zhengtong Liu, Xinfang Nie, Dawei Lu, Shumin Xiao, Xin Ou, Adam Gali, Yu Zhou, Qinghai Song',
+    journal: 'Physical Review Letters',
+    year: 2025,
+    doi: '10.1103/tdb3-tqfv',
+    pdfLink: '',
+    category: ['Silicon Carbide', 'Spin Defects', 'Quantum Sensing'],
+  },
+  {
+    title: 'Integration of coherent spins in 4H-SiC beam splitters',
+    authors: 'Chengying Liu, Yao Zhang, Ailun Yi, Qi Luo, Yingjie Li, Haibo Hu, Tongyuan Bao, Shumin Xiao, Xin Ou, Yu Zhou, Qinghai Song',
+    journal: 'Optics Letters',
+    year: 2025,
+    doi: '10.1364/OL.567850',
+    pdfLink: '',
+    category: ['Silicon Carbide', 'Integrated Photonics', 'Spin Defects'],
+  },
+  {
+    title: 'Enhancement of silicon vacancy fluorescence intensity in silicon carbide using a dielectric cavity',
+    authors: 'Qi-Cheng Hu, Ji Xu, Qin-Yue Luo, Hai-Bo Hu, Pei-Jie Guo, Cheng-Ying Liu, Shuang Zhao, Yu Zhou, Jun-Feng Wang',
+    journal: 'Optics Letters',
+    year: 2024,
+    doi: '10.1364/OL.522770',
+    pdfLink: '',
+    category: ['Silicon Carbide', 'Silicon Vacancy', 'Cavity QED'],
+  },
+  {
+    title: 'Emission Control in Metal Halide Perovskite Lasers',
+    authors: 'Kaiyang Wang, Can Huang, Qifeng Ruan, Yu Zhou, Yimu Chen, Haoliang Liu, Shumin Xiao, Qinghai Song',
+    journal: 'ACS Photonics',
+    year: 2023,
+    doi: '10.1021/acsphotonics.2c01658',
+    pdfLink: '',
+    category: ['Perovskite', 'Laser Photonics'],
+  },
+  {
     title: 'Deterministic and Scalable Coupling of Single 4H-SiC Spin Defects into Bullseye Cavities',
     authors: 'Tongyuan Bao, Qi Luo, Ailun Yi, Yingjie Li, Haibo Hu, Xin Ou, Yu Zhou, Qinghai Song',
     journal: 'Laser & Photonics Reviews',
