@@ -25,22 +25,7 @@ const PDF_THUMBS: Record<string, string> = {
   '10.1038/ncomms14451':            '/images/papers/natcomm-2017-siv-coherent.jpg',
 };
 
-// Journal name → color style
-const JOURNAL_COLORS: Record<string, string> = {
-  'Nature Communications':       'bg-green-50 text-green-700 border-green-200',
-  'ACS Photonics':               'bg-orange-50 text-orange-700 border-orange-200',
-  'Physical Review Letters':     'bg-red-50 text-red-700 border-red-200',
-  'Physical Review Applied':     'bg-red-50 text-red-700 border-red-200',
-  'Laser & Photonics Reviews':   'bg-purple-50 text-purple-700 border-purple-200',
-  'Applied Physics Reviews':     'bg-purple-50 text-purple-700 border-purple-200',
-  'Photonics Research':          'bg-teal-50 text-teal-700 border-teal-200',
-  'Optics Letters':              'bg-teal-50 text-teal-700 border-teal-200',
-  'Science Advances':            'bg-indigo-50 text-indigo-700 border-indigo-200',
-  'Advanced Optical Materials':  'bg-blue-50 text-blue-700 border-blue-200',
-  'New Journal of Physics':      'bg-sky-50 text-sky-700 border-sky-200',
-};
-
-const DEFAULT_JOURNAL_COLOR = 'bg-gray-50 text-gray-700 border-gray-200';
+const JOURNAL_BADGE = 'bg-blue-50 text-blue-700 border-blue-200';
 
 interface PublicationListProps {
   publications: Publication[];
@@ -81,7 +66,6 @@ export default function PublicationList({ publications, groupByYear = true }: Pu
             {(grouped[year] || []).map((pub) => {
               const doi = pub.doi || '';
               const thumbnail = COVER_IMAGES[doi] || PDF_THUMBS[doi];
-              const journalColor = JOURNAL_COLORS[pub.journal] || DEFAULT_JOURNAL_COLOR;
 
               return (
                 <div
@@ -114,7 +98,7 @@ export default function PublicationList({ publications, groupByYear = true }: Pu
                     <div className="flex-1 min-w-0 p-4">
                       {/* Journal badge */}
                       <div className="mb-2">
-                        <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded border ${journalColor}`}>
+                        <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded border ${JOURNAL_BADGE}`}>
                           {pub.journal}{pub.year > 0 ? ` (${pub.year})` : ''}
                         </span>
                       </div>
