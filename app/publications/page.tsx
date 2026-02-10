@@ -1,7 +1,7 @@
 import { getPublications } from '@/lib/notion';
 import PublicationList from '@/components/PublicationList';
 
-export const revalidate = 3600; // ISR: 每小时重新生成
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'Publications | Quantum Photonics Lab',
