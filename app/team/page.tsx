@@ -2,7 +2,7 @@ import { getTeamMembers } from '@/lib/notion';
 import TeamMemberCard from '@/components/TeamMemberCard';
 import { ROLE_ORDER, ROLE_DISPLAY_NAMES, RoleType } from '@/lib/types';
 
-export const revalidate = 3600; // ISR: 每小时重新生成
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'Team | Quantum Photonics Lab',

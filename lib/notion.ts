@@ -91,6 +91,11 @@ function getDate(property: any): string {
   return '';
 }
 
+// 本地照片映射（Notion files 字段不支持本地路径，用此兜底）
+const LOCAL_PHOTOS: Record<string, string> = {
+  'Yu Zhou (周宇)': '/images/team/yu-zhou.png',
+};
+
 /**
  * 获取团队成员列表
  * @param status 过滤状态：'Active', 'Alumni', 或不传则获取全部
@@ -119,7 +124,7 @@ export async function getTeamMembers(status?: 'Active' | 'Alumni'): Promise<Team
       return {
         id: page.id,
         name: getPlainText(props.Name),
-        photo: getFiles(props.Photo),
+        photo: getFiles(props.Photo) || LOCAL_PHOTOS[getPlainText(props.Name)] || '',
         role: getSelect(props.Role) as TeamMember['role'],
         email: getEmail(props.Email),
         joinYear: getNumber(props['Join Year']),

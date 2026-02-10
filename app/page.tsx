@@ -4,7 +4,7 @@ import { getTeamMembers, getNews, getPublications } from '@/lib/notion';
 import TeamMemberCard from '@/components/TeamMemberCard';
 import NewsCard from '@/components/NewsCard';
 
-export const revalidate = 3600; // ISR: 每小时重新生成
+export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   // 获取数据（可能为空，如果 Notion 还未配置）
