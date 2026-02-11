@@ -40,6 +40,7 @@ export interface NewsItem {
   content: string;
   cover?: string;
   source?: string;
+  url?: string;
   category: 'Award' | 'Publication' | 'Event' | 'Recruitment';
 }
 

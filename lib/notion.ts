@@ -241,6 +241,7 @@ export async function getNews(limit?: number): Promise<NewsItem[]> {
         content: getPlainText(props.Content),
         cover: getFiles(props.Cover),
         source: getPlainText(props.Source),
+        url: getUrl(props.URL),
         category: getSelect(props.Category) as NewsItem['category'],
       };
     });
