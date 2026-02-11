@@ -174,14 +174,14 @@ export default function AboutPage() {
             Please send your CV and a brief statement of research interests to the group email.
           </p>
           <a
-            href="mailto:zhouyu@hit.edu.cn"
+            href="mailto:zhouyu2022@hit.edu.cn"
             className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-sm"
           >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
             </svg>
-            zhouyu@hit.edu.cn
+            zhouyu2022@hit.edu.cn
           </a>
         </section>
 
