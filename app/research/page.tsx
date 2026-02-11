@@ -135,6 +135,22 @@ export default function ResearchPage() {
             </div>
           </div>
 
+          {/* Divacancy structure diagram */}
+          <div className="mb-8 flex justify-center">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 max-w-xs w-full">
+              <Image
+                src="/images/divacancy-sic-structure.jpg"
+                alt="SiC divacancy (V_C V_Si) color center crystal structure"
+                width={320}
+                height={320}
+                className="w-full object-contain"
+              />
+              <p className="text-xs text-gray-400 text-center mt-3">
+                SiC divacancy (V<sub>C</sub>V<sub>Si</sub>) — the color center at the heart of our sensing platform
+              </p>
+            </div>
+          </div>
+
           <div className="md:flex gap-10 items-start">
             <div className="flex-1 space-y-4 text-gray-700 leading-relaxed">
               <p>
