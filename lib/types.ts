@@ -39,6 +39,7 @@ export interface NewsItem {
   date: string;
   content: string;
   cover?: string;
+  source?: string;
   category: 'Award' | 'Publication' | 'Event' | 'Recruitment';
 }
 

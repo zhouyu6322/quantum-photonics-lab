@@ -240,6 +240,7 @@ export async function getNews(limit?: number): Promise<NewsItem[]> {
         date: getDate(props.Date),
         content: getPlainText(props.Content),
         cover: getFiles(props.Cover),
+        source: getPlainText(props.Source),
         category: getSelect(props.Category) as NewsItem['category'],
       };
     });

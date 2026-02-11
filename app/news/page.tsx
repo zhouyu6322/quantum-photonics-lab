@@ -1,7 +1,7 @@
 import { getNews } from '@/lib/notion';
 import NewsCard from '@/components/NewsCard';
 
-export const revalidate = 3600; // ISR: 每小时重新生成
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'News | Quantum Photonics Lab',

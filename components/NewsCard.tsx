@@ -57,6 +57,13 @@ export default function NewsCard({ news }: NewsCardProps) {
             {news.content}
           </p>
         )}
+
+        {/* Source */}
+        {news.source && (
+          <p className="text-xs text-gray-400 mt-3">
+            来源 / Source: {news.source}
+          </p>
+        )}
       </div>
     </article>
   );
