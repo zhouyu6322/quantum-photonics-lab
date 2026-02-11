@@ -1,5 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import GalleryGrid from '@/components/GalleryGrid';
+
+// ── Group Gallery ──────────────────────────────────────────────────────────
+// 新增照片：把图片放到 public/images/gallery/，然后在这里加一行
+const GALLERY: { src: string; caption: string }[] = [
+  { src: '/images/gallery/group-seaside.jpg',    caption: 'Group outing · 深圳东部海岸' },
+  { src: '/images/gallery/group-hotpot.jpg',     caption: 'Birthday celebration · 组内聚餐' },
+  { src: '/images/gallery/group-graduation.jpg', caption: 'Graduation · 毕业典礼' },
+];
+// ──────────────────────────────────────────────────────────────────────────
 
 export const metadata = {
   title: 'About | Quantum Photonics Lab',
@@ -190,6 +200,14 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* ── Group Gallery ────────────────────────────────────── */}
+        {GALLERY.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Group Gallery</h2>
+            <GalleryGrid items={GALLERY} />
+          </section>
+        )}
+
         {/* ── Contact / Join ────────────────────────────────────── */}
         <section className="bg-gradient-to-r from-blue-700 to-indigo-700 rounded-2xl p-8 md:p-10 text-white">
           <h2 className="text-2xl font-bold mb-2">Join Our Team</h2>
@@ -197,9 +215,9 @@ export default function AboutPage() {
             We welcome motivated researchers at all levels.
           </p>
           <div className="space-y-3 text-sm text-blue-100 mb-8">
-            <p>• <strong className="text-white">博士生 / PhD students</strong> — 量子光子学、固态物理、光子集成方向</p>
-            <p>• <strong className="text-white">博士后 / Postdocs</strong> — 实验量子光学、纳米加工、量子信息</p>
-            <p>• <strong className="text-white">本科生 / Undergraduates</strong> — 有机会参与前沿科研项目</p>
+            <p>• <strong className="text-white">博士后 / Postdocs</strong> — 量子光子学、纳米光子学、量子信息方向；待遇从优，支持个人发展</p>
+            <p>• <strong className="text-white">博士生 / PhD students</strong> — 量子光子学、纳米光子学、量子信息方向；欢迎本科毕业于国内外一流院校的优秀学生</p>
+            <p>• <strong className="text-white">本科生 / Undergraduates</strong> — 量子光子学、纳米光子学、量子信息方向；有机会参与前沿科研项目</p>
           </div>
           <p className="text-blue-100 text-sm mb-6">
             请将简历及研究兴趣说明发送至课题组邮箱，或直接联系周宇老师。
