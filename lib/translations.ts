@@ -30,8 +30,8 @@ export const t = {
     btn_research:     { en: 'Our Research',        zh: '研究方向' },
     btn_publications: { en: 'Publications',        zh: '发表论文' },
     cover_caption:    {
-      en: 'SiC microring resonator with evanescently coupled color center · Laser & Photonics Reviews 2025',
-      zh: '碳化硅微环谐振腔与色心耦合 · Laser & Photonics Reviews 2025',
+      en: 'SiC microring resonator with evanescently coupled color center · ACS Photonics (2025)',
+      zh: '碳化硅微环谐振腔与色心耦合 · ACS Photonics (2025)',
     },
     research_title:   { en: 'Research Directions',  zh: '研究方向' },
     research_sub:     { en: 'Two interconnected pillars: on-chip quantum photonics and defect-based sensing', zh: '两大研究方向：片上量子光子学与基于缺陷的量子传感' },
