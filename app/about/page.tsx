@@ -164,13 +164,6 @@ export default function AboutPage() {
                 zh: '自旋-光子接口',
                 desc: 'Near-unity nuclear spin polarization in SiC waveguides; scalable quantum network nodes.',
               },
-              {
-                cardCls: 'bg-indigo-50 border-indigo-100',
-                textCls: 'text-indigo-600',
-                title: 'Diamond NV / SiV Centers',
-                zh: '金刚石色心',
-                desc: 'Optical spectral dynamics of diamond color centers; SiV coherent control for quantum registers.',
-              },
             ].map((item) => (
               <div key={item.title} className={`rounded-xl p-6 border ${item.cardCls}`}>
                 <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
