@@ -18,8 +18,11 @@ export interface ResearchArea {
   id: string;
   title: string;
   description: string;
+  order: number;
+  color: string;
+  keywords: string[];
+  metrics: string;   // pipe-separated: "~100% label | On-chip label"
   icon?: string;
-  relatedPapers?: string[];
 }
 
 export interface Publication {

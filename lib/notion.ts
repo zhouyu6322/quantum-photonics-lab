@@ -155,15 +155,21 @@ export async function getResearchAreas(): Promise<ResearchArea[]> {
       database_id: DATABASE_IDS.RESEARCH,
     });
 
-    return response.results.map((page: any) => {
-      const props = page.properties;
-      return {
-        id: page.id,
-        title: getPlainText(props.Title),
-        description: getPlainText(props.Description),
-        icon: getFiles(props.Icon),
-      };
-    });
+    return response.results
+      .map((page: any) => {
+        const props = page.properties;
+        return {
+          id: page.id,
+          title: getPlainText(props.Title),
+          description: getPlainText(props.Description),
+          order: (props.Order?.number as number) ?? 99,
+          color: getSelect(props.Color) || 'blue',
+          keywords: getMultiSelect(props.Keywords),
+          metrics: getPlainText(props.Metrics),
+          icon: getFiles(props.Icon),
+        };
+      })
+      .sort((a: any, b: any) => a.order - b.order);
   } catch (error) {
     console.error('Error fetching research areas:', error);
     return [];
