@@ -7,7 +7,6 @@ import NewsCard from '@/components/NewsCard';
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  // 获取数据（可能为空，如果 Notion 还未配置）
   const [teamMembers, news, recentPublications] = await Promise.all([
     getTeamMembers('Active').catch(() => []),
     getNews(3).catch(() => []),
@@ -18,102 +17,149 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 text-white overflow-hidden">
-        {/* 背景装饰 Logo - 右上角 */}
-        <div className="absolute right-0 top-0 w-80 h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] opacity-10 -mr-20 -mt-20">
-          <Image
-            src="/images/hit-logo.png"
-            alt=""
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
 
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Quantum Photonics Lab
-            </h1>
-            <p className="text-xl md:text-2xl mb-4 text-blue-100">
-              量子光子学课题组
-            </p>
-            <p className="text-lg md:text-xl mb-8 text-blue-50 leading-relaxed">
-              哈尔滨工业大学（深圳）| Harbin Institute of Technology, Shenzhen
-            </p>
-            <p className="text-base md:text-lg text-blue-100 mb-10 leading-relaxed max-w-3xl">
-              专注于碳化硅色心、金刚石色心、固态量子缺陷等量子光学前沿研究，
-              致力于推动量子信息技术的发展与应用。
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/research"
-                className="bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-              >
-                Our Research
-              </Link>
-              <Link
-                href="/team"
-                className="bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-900 transition-colors border-2 border-blue-600"
-              >
-                Meet the Team
-              </Link>
+      {/* ── Hero ──────────────────────────────────────────────── */}
+      <section className="relative bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+            {/* Left: text */}
+            <div className="flex-1 max-w-2xl">
+              <p className="text-blue-300 text-sm font-semibold tracking-widest uppercase mb-4">
+                Harbin Institute of Technology, Shenzhen
+              </p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                Quantum Photonics Lab
+              </h1>
+              <p className="text-xl text-blue-200 mb-6">量子光子学课题组</p>
+              <p className="text-base md:text-lg text-slate-300 mb-8 leading-relaxed">
+                We develop <span className="text-white font-medium">integrated silicon carbide photonic quantum chips</span> and
+                <span className="text-white font-medium"> color center-based quantum sensing</span> technologies,
+                pushing the boundaries of scalable quantum information systems.
+              </p>
+
+              {/* Stats row */}
+              <div className="flex flex-wrap gap-8 mb-10 text-center">
+                {[
+                  { value: '16+', label: 'Publications' },
+                  { value: '4×', label: 'Nature Comms' },
+                  { value: 'PRL', label: 'Phys. Rev. Lett.' },
+                  { value: 'LPR', label: 'Laser & Photonics Rev.' },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <div className="text-2xl font-bold text-blue-300">{stat.value}</div>
+                    <div className="text-xs text-slate-400 mt-0.5">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/research"
+                  className="bg-blue-500 hover:bg-blue-400 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                >
+                  Our Research
+                </Link>
+                <Link
+                  href="/publications"
+                  className="border border-slate-500 hover:border-blue-400 text-slate-200 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                >
+                  Publications
+                </Link>
+              </div>
             </div>
+
+            {/* Right: cover art */}
+            <div className="flex-shrink-0 w-full lg:w-[480px] xl:w-[540px]">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/50">
+                <Image
+                  src="/images/cover-art-sic-ring.jpg"
+                  alt="Integrated SiC photonic quantum chip — microring resonator with color center"
+                  width={540}
+                  height={540}
+                  className="w-full object-cover"
+                  priority
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                  <p className="text-xs text-white/80">
+                    SiC microring resonator with evanescently coupled color center · <span className="italic">Laser &amp; Photonics Reviews</span> 2025
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Research Highlights */}
+      {/* ── Research Directions ───────────────────────────────── */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
-            Research Highlights
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 text-center">
+            Research Directions
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: '碳化硅色心',
-                description: 'Silicon carbide color centers for quantum applications',
-                icon: '🔬',
-              },
-              {
-                title: '金刚石色心',
-                description: 'Diamond NV centers and quantum sensing',
-                icon: '💎',
-              },
-              {
-                title: '固态量子缺陷',
-                description: 'Solid-state quantum defects and quantum networks',
-                icon: '⚛️',
-              },
-            ].map((area, idx) => (
-              <div
-                key={idx}
-                className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-8 hover:shadow-lg transition-shadow"
-              >
-                <div className="text-5xl mb-4">{area.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {area.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {area.description}
-                </p>
+          <p className="text-gray-500 text-center mb-12 max-w-2xl mx-auto">
+            Two interconnected pillars: on-chip quantum photonics and defect-based sensing
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Direction 1 */}
+            <div className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-5">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="8" strokeWidth="1.5"/>
+                  <path strokeLinecap="round" strokeWidth="1.5" d="M12 4C8 4 4 8 4 12M12 4c4 0 8 4 8 8"/>
+                  <circle cx="12" cy="12" r="2" fill="currentColor" strokeWidth="0"/>
+                </svg>
               </div>
-            ))}
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Integrated SiC Photonic Quantum Chips
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-sm">
+                We design and fabricate integrated silicon carbide (SiC) photonic devices — microring resonators,
+                waveguides, and grating couplers — that deterministically couple to single color center emitters.
+                Key achievements include near-unity nuclear spin polarization in waveguides and scalable
+                entangled photon pair generation on chip.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {['Microring Resonator', 'Grating Coupler', 'Photon Entanglement', 'Spin–Photon Interface'].map(t => (
+                  <span key={t} className="text-xs bg-white text-blue-700 border border-blue-200 px-2 py-1 rounded-full">{t}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Direction 2 */}
+            <div className="rounded-2xl border border-purple-100 bg-gradient-to-br from-purple-50 to-pink-50 p-8 hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-5">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Color Center-Based Quantum Sensing
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-sm">
+                We exploit the exceptional spin coherence properties of SiC and diamond color centers for
+                precision sensing. Using strain engineering, we have demonstrated room-temperature spin
+                readout contrast exceeding 60% in SiC membranes — a record for solid-state quantum sensors.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {['Strain Engineering', 'Spin Readout', 'Thermometry', 'Room-Temperature Sensing'].map(t => (
+                  <span key={t} className="text-xs bg-white text-purple-700 border border-purple-200 px-2 py-1 rounded-full">{t}</span>
+                ))}
+              </div>
+            </div>
           </div>
+
           <div className="text-center mt-10">
-            <Link
-              href="/research"
-              className="inline-block text-blue-600 hover:text-blue-800 font-semibold"
-            >
-              Explore All Research Areas →
+            <Link href="/research" className="inline-block text-blue-600 hover:text-blue-800 font-semibold">
+              Explore Research in Detail →
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Team Preview */}
+      {/* ── PI Preview ────────────────────────────────────────── */}
       {pi.length > 0 && (
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,10 +170,7 @@ export default async function HomePage() {
               <TeamMemberCard member={pi[0]} />
             </div>
             <div className="text-center mt-10">
-              <Link
-                href="/team"
-                className="inline-block text-blue-600 hover:text-blue-800 font-semibold"
-              >
+              <Link href="/team" className="inline-block text-blue-600 hover:text-blue-800 font-semibold">
                 View Full Team →
               </Link>
             </div>
@@ -135,36 +178,45 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Recent Publications */}
+      {/* ── Recent Publications ───────────────────────────────── */}
       {recentPublications.length > 0 && (
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
               Recent Publications
             </h2>
-            <div className="max-w-4xl mx-auto space-y-6">
+            <div className="max-w-4xl mx-auto space-y-4">
               {recentPublications.slice(0, 3).map((pub) => (
                 <div
                   key={pub.id}
-                  className="bg-gray-50 rounded-lg p-6 hover:bg-gray-100 transition-colors"
+                  className="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-colors border border-gray-100"
                 >
-                  <h3 className="font-semibold text-gray-900 mb-2">
-                    {pub.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-2">
-                    {pub.authors}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    <span className="italic">{pub.journal}</span> ({pub.year})
-                  </p>
+                  <div className="flex items-start gap-3">
+                    <span className="inline-block flex-shrink-0 text-xs font-semibold px-2 py-0.5 rounded border bg-blue-50 text-blue-700 border-blue-200 mt-0.5">
+                      {pub.journal}
+                    </span>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-1 leading-snug">
+                        {pub.title}
+                      </h3>
+                      <p className="text-sm text-gray-500">{pub.authors}</p>
+                    </div>
+                    {pub.doi && (
+                      <a
+                        href={`https://doi.org/${pub.doi}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-auto flex-shrink-0 text-xs text-blue-600 hover:text-blue-800 font-medium"
+                      >
+                        DOI →
+                      </a>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
             <div className="text-center mt-10">
-              <Link
-                href="/publications"
-                className="inline-block text-blue-600 hover:text-blue-800 font-semibold"
-              >
+              <Link href="/publications" className="inline-block text-blue-600 hover:text-blue-800 font-semibold">
                 View All Publications →
               </Link>
             </div>
@@ -172,7 +224,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Latest News */}
+      {/* ── Latest News ───────────────────────────────────────── */}
       {news.length > 0 && (
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -185,10 +237,7 @@ export default async function HomePage() {
               ))}
             </div>
             <div className="text-center mt-10">
-              <Link
-                href="/news"
-                className="inline-block text-blue-600 hover:text-blue-800 font-semibold"
-              >
+              <Link href="/news" className="inline-block text-blue-600 hover:text-blue-800 font-semibold">
                 View All News →
               </Link>
             </div>
@@ -196,15 +245,13 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      {/* ── CTA ───────────────────────────────────────────────── */}
+      <section className="py-16 bg-gradient-to-r from-blue-700 to-indigo-700 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Join Our Research Group
-          </h2>
-          <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            We are always looking for motivated students and postdocs
-            to join our quantum photonics research team.
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Join Our Research Group</h2>
+          <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+            We are looking for motivated PhD students, postdocs, and undergraduate researchers
+            passionate about quantum photonics and quantum sensing.
           </p>
           <Link
             href="/about"
@@ -214,6 +261,7 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
+
     </div>
   );
 }
