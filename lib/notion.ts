@@ -94,6 +94,7 @@ function getDate(property: any): string {
 // 本地照片映射（Notion files 字段不支持本地路径，用此兜底）
 const LOCAL_PHOTOS: Record<string, string> = {
   'Yu Zhou (周宇)': '/images/team/yu-zhou.png',
+  'Qinghai Song (宋清海)': '/images/team/qinghai-song.jpg',
 };
 
 /**

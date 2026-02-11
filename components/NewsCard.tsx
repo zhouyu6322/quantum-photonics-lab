@@ -39,12 +39,12 @@ export default function NewsCard({ news }: NewsCardProps) {
     <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
       {/* Thumbnail */}
       {thumbnail ? (
-        <div className="relative w-full h-44 bg-gray-100 flex-shrink-0">
+        <div className="relative w-full h-44 bg-gray-50 flex-shrink-0">
           <Image
             src={thumbnail}
             alt={news.title}
             fill
-            className="object-cover object-top"
+            className="object-contain"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             unoptimized={thumbnail.startsWith('http')}
           />

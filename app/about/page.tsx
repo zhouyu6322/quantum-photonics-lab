@@ -54,10 +54,52 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── PI ───────────────────────────────────────────────── */}
+        {/* ── PIs ──────────────────────────────────────────────── */}
+
+        {/* 宋清海 */}
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
           <div className="md:flex">
-            {/* Photo */}
+            <div className="md:w-56 flex-shrink-0 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-8">
+              <div className="relative w-32 h-32 rounded-full overflow-hidden ring-4 ring-white shadow-md">
+                <Image
+                  src="/images/team/qinghai-song.jpg"
+                  alt="宋清海 / Qinghai Song"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+            <div className="p-8 flex-1">
+              <div className="flex flex-wrap items-center gap-3 mb-1">
+                <h2 className="text-2xl font-bold text-gray-900">宋清海 / Qinghai Song</h2>
+                <span className="text-xs font-semibold bg-blue-600 text-white px-3 py-1 rounded-full">
+                  Principal Investigator
+                </span>
+                <span className="text-xs font-semibold bg-amber-500 text-white px-3 py-1 rounded-full">
+                  国家级人才
+                </span>
+              </div>
+              <p className="text-gray-500 text-sm mb-4">
+                教授 · 哈尔滨工业大学（深圳）集成电路学院院长
+              </p>
+              <div className="space-y-2 text-gray-700 text-sm leading-relaxed">
+                <p>
+                  宋清海教授长期从事集成光子学与量子光子学研究，在碳化硅集成光量子器件、微纳光子结构等方向取得系列重要成果，
+                  现任哈尔滨工业大学（深圳）集成电路学院院长。
+                </p>
+                <p>
+                  Prof. Song Qinghai's research focuses on integrated photonics and quantum photonics,
+                  with significant contributions to SiC integrated quantum photonic devices and micro-nano photonic structures.
+                  He currently serves as Dean of the School of Integrated Circuits at HIT Shenzhen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 周宇 */}
+        <section className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <div className="md:flex">
             <div className="md:w-56 flex-shrink-0 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-8">
               <div className="relative w-32 h-32 rounded-full overflow-hidden ring-4 ring-white shadow-md">
                 <Image
@@ -68,8 +110,6 @@ export default function AboutPage() {
                 />
               </div>
             </div>
-
-            {/* Info */}
             <div className="p-8 flex-1">
               <div className="flex flex-wrap items-center gap-3 mb-1">
                 <h2 className="text-2xl font-bold text-gray-900">周宇 / Yu Zhou</h2>
@@ -81,7 +121,7 @@ export default function AboutPage() {
                 </span>
               </div>
               <p className="text-gray-500 text-sm mb-4">
-                助理教授 · 哈尔滨工业大学（深圳）理学院
+                教授 · 哈尔滨工业大学（深圳）集成电路学院
               </p>
               <div className="space-y-2 text-gray-700 text-sm leading-relaxed">
                 <p>
