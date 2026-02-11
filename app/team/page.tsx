@@ -1,6 +1,8 @@
 import { getTeamMembers } from '@/lib/notion';
 import TeamMemberCard from '@/components/TeamMemberCard';
 import { ROLE_ORDER, ROLE_DISPLAY_NAMES, RoleType } from '@/lib/types';
+import { T } from '@/components/T';
+import { t } from '@/lib/translations';
 
 export const dynamic = 'force-dynamic';
 
@@ -31,10 +33,10 @@ export default async function TeamPage() {
         {/* Page Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our Team
+            <T {...t.team.title} />
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Meet the talented researchers driving innovation in quantum photonics
+            <T {...t.team.subtitle} />
           </p>
         </div>
 
@@ -48,7 +50,9 @@ export default async function TeamPage() {
           return (
             <section key={role} className="mb-20">
               <h2 className="text-3xl font-bold text-gray-900 mb-8 pb-3 border-b-2 border-blue-600">
-                {displayName}
+                {t.team.roles[role as keyof typeof t.team.roles]
+                  ? <T {...t.team.roles[role as keyof typeof t.team.roles]} />
+                  : displayName}
               </h2>
               <div className={`grid grid-cols-1 ${gridCols} gap-8`}>
                 {roleMembers.map((member) => (

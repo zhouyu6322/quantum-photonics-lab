@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import GalleryGrid from '@/components/GalleryGrid';
+import { T } from '@/components/T';
+import { t } from '@/lib/translations';
 
 // ── Group Gallery ──────────────────────────────────────────────────────────
 // 新增照片：把图片放到 public/images/gallery/，然后在这里加一行
@@ -31,7 +33,7 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-transparent" />
         <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24">
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-2">About Us</h1>
+          <h1 className="text-3xl md:text-5xl font-bold text-white mb-2"><T {...t.about.hero_title} /></h1>
           <p className="text-blue-200 text-sm md:text-base">量子光子学课题组 · 哈尔滨工业大学（深圳）</p>
         </div>
       </div>
@@ -40,26 +42,16 @@ export default function AboutPage() {
 
         {/* ── Lab intro ────────────────────────────────────────── */}
         <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-10">
-          <h2 className="text-2xl font-bold text-gray-900 mb-5">Quantum Photonics Lab</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-5"><T {...t.about.intro_title} /></h2>
           <div className="space-y-4 text-gray-700 leading-relaxed">
-            <p>
-              欢迎来到哈尔滨工业大学（深圳）量子光子学课题组。我们专注于
-              <strong>集成碳化硅光量子芯片</strong>与<strong>基于色心的量子传感</strong>两大方向，
-              致力于将固态量子系统从基础物理推向可扩展的量子信息技术应用。
-            </p>
-            <p>
-              Welcome to the Quantum Photonics Lab at Harbin Institute of Technology, Shenzhen.
-              Our research centers on <strong>integrated SiC photonic quantum chips</strong> and
-              <strong> color center-based quantum sensing</strong>, bridging fundamental quantum
-              optics with scalable device engineering.
-            </p>
+            <p><T {...t.about.intro_body_1} /></p>
           </div>
           <div className="mt-6 flex gap-4">
             <Link href="/research" className="text-sm font-medium text-blue-600 hover:text-blue-800">
-              Our Research →
+              <T {...t.about.our_research} />
             </Link>
             <Link href="/publications" className="text-sm font-medium text-blue-600 hover:text-blue-800">
-              Publications →
+              <T {...t.about.publications} />
             </Link>
           </div>
         </section>
@@ -150,7 +142,7 @@ export default function AboutPage() {
 
         {/* ── Research focus ───────────────────────────────────── */}
         <section>
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Research Focus</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6"><T {...t.about.research_focus} /></h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
@@ -186,7 +178,7 @@ export default function AboutPage() {
 
         {/* ── Location ─────────────────────────────────────────── */}
         <section className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-5">Location</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-5"><T {...t.about.location} /></h2>
           <div className="flex items-start gap-4 text-gray-700">
             <svg className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
@@ -203,27 +195,21 @@ export default function AboutPage() {
         {/* ── Group Gallery ────────────────────────────────────── */}
         {GALLERY.length > 0 && (
           <section>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Group Gallery</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6"><T {...t.about.gallery} /></h2>
             <GalleryGrid items={GALLERY} />
           </section>
         )}
 
         {/* ── Contact / Join ────────────────────────────────────── */}
         <section className="bg-gradient-to-r from-blue-700 to-indigo-700 rounded-2xl p-8 md:p-10 text-white">
-          <h2 className="text-2xl font-bold mb-2">Join Our Team</h2>
-          <p className="text-blue-100 text-sm mb-6">
-            We welcome motivated researchers at all levels.
-          </p>
+          <h2 className="text-2xl font-bold mb-2"><T {...t.join.title} /></h2>
+          <p className="text-blue-100 text-sm mb-6"><T {...t.join.subtitle} /></p>
           <div className="space-y-3 text-sm text-blue-100 mb-8">
-            <p>• <strong className="text-white">博士后 / Postdocs</strong> — 量子光子学、纳米光子学、量子信息方向；待遇从优，支持个人发展</p>
-            <p>• <strong className="text-white">博士生 / PhD students</strong> — 量子光子学、纳米光子学、量子信息方向；欢迎本科毕业于国内外一流院校的优秀学生</p>
-            <p>• <strong className="text-white">本科生 / Undergraduates</strong> — 量子光子学、纳米光子学、量子信息方向；有机会参与前沿科研项目</p>
+            <p>• <strong className="text-white"><T {...t.join.postdoc} /></strong> — <T {...t.join.postdoc_d} /></p>
+            <p>• <strong className="text-white"><T {...t.join.phd} /></strong> — <T {...t.join.phd_d} /></p>
+            <p>• <strong className="text-white"><T {...t.join.ug} /></strong> — <T {...t.join.ug_d} /></p>
           </div>
-          <p className="text-blue-100 text-sm mb-6">
-            请将简历及研究兴趣说明发送至课题组邮箱，或直接联系周宇老师。
-            <br />
-            Please send your CV and a brief statement of research interests to the group email.
-          </p>
+          <p className="text-blue-100 text-sm mb-6"><T {...t.join.contact} /></p>
           <a
             href="mailto:zhouyu2022@hit.edu.cn"
             className="inline-flex items-center gap-2 bg-white text-blue-700 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-sm"

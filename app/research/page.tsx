@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getResearchAreas } from '@/lib/notion';
 import { ResearchArea } from '@/lib/types';
+import { T } from '@/components/T';
+import { t } from '@/lib/translations';
 
 export const dynamic = 'force-dynamic';
 
@@ -95,7 +97,7 @@ export default async function ResearchPage() {
         <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 lg:px-24">
           <h1 className="text-3xl md:text-5xl font-bold text-white mb-3">Research</h1>
           <p className="text-blue-200 text-base md:text-lg max-w-xl">
-            On-chip quantum photonics meets color center physics
+            <T {...t.research.hero_subtitle} />
           </p>
         </div>
       </div>
@@ -118,7 +120,7 @@ export default async function ResearchPage() {
                   </div>
                   <div>
                     <p className={`text-xs font-semibold uppercase tracking-widest ${area.color === 'purple' ? 'text-purple-500' : 'text-blue-500'}`}>
-                      Direction {String(area.order).padStart(2, '0')}
+                      <T {...t.research.direction} /> {String(area.order).padStart(2, '0')}
                     </p>
                     <h2 className="text-2xl md:text-3xl font-bold text-gray-900">{area.title}</h2>
                   </div>
@@ -175,7 +177,7 @@ export default async function ResearchPage() {
                 {/* Publications */}
                 {meta.publications.length > 0 && (
                   <div className="mt-8 p-5 bg-gray-50 rounded-xl border border-gray-100">
-                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Key Publications</p>
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3"><T {...t.research.key_pubs} /></p>
                     <ul className="space-y-2 text-sm text-gray-700">
                       {meta.publications.map((p) => (
                         <li key={p.title} className="flex items-start gap-2">
@@ -185,7 +187,7 @@ export default async function ResearchPage() {
                       ))}
                     </ul>
                     <Link href="/publications" className={`inline-block mt-3 text-xs font-medium ${style.link}`}>
-                      View all publications →
+                      <T {...t.research.view_all_pubs} />
                     </Link>
                   </div>
                 )}
@@ -198,12 +200,12 @@ export default async function ResearchPage() {
 
         {/* CTA */}
         <div className="bg-gradient-to-r from-blue-700 to-indigo-700 rounded-2xl p-10 text-white text-center">
-          <h2 className="text-2xl font-bold mb-3">Interested in Collaborating?</h2>
+          <h2 className="text-2xl font-bold mb-3"><T {...t.research.collab_title} /></h2>
           <p className="text-blue-100 mb-6 max-w-xl mx-auto">
-            We welcome collaborations in quantum photonics, nanofabrication, and spin-based sensing.
+            <T {...t.research.collab_body} />
           </p>
           <Link href="/about" className="inline-block bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-            Get in Touch
+            <T {...t.research.get_in_touch} />
           </Link>
         </div>
 

@@ -1,5 +1,7 @@
 import { getNews } from '@/lib/notion';
 import NewsCard from '@/components/NewsCard';
+import { T } from '@/components/T';
+import { t } from '@/lib/translations';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,10 +19,10 @@ export default async function NewsPage() {
         {/* Page Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            News & Events
+            <T {...t.news.title} />
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Stay updated with the latest happenings in our lab
+            <T {...t.news.subtitle} />
           </p>
         </div>
 

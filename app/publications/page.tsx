@@ -1,5 +1,7 @@
 import { getPublications } from '@/lib/notion';
 import PublicationList from '@/components/PublicationList';
+import { T } from '@/components/T';
+import { t } from '@/lib/translations';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,10 +19,10 @@ export default async function PublicationsPage() {
         {/* Page Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Publications
+            <T {...t.publications.title} />
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Our research contributions to the field of quantum photonics
+            <T {...t.publications.subtitle} />
           </p>
           {publications.length > 0 && (
             <p className="text-lg text-gray-500 mt-4">
