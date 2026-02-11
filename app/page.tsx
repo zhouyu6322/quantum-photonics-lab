@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getTeamMembers, getNews, getPublications } from '@/lib/notion';
+import { sortPublications } from '@/lib/journal-rank';
 import TeamMemberCard from '@/components/TeamMemberCard';
 import NewsCard from '@/components/NewsCard';
 
@@ -14,6 +15,7 @@ export default async function HomePage() {
   ]);
 
   const pi = teamMembers.filter(m => m.role === 'PI');
+  const sortedPublications = sortPublications(recentPublications);
 
   return (
     <div className="min-h-screen">
@@ -188,7 +190,7 @@ export default async function HomePage() {
               Recent Publications
             </h2>
             <div className="max-w-4xl mx-auto space-y-4">
-              {recentPublications.slice(0, 3).map((pub) => (
+              {sortedPublications.slice(0, 3).map((pub) => (
                 <div
                   key={pub.id}
                   className="bg-gray-50 rounded-lg p-5 hover:bg-gray-100 transition-colors border border-gray-100"

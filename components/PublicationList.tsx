@@ -1,4 +1,5 @@
 import { Publication } from '@/lib/types';
+import { journalRank } from '@/lib/journal-rank';
 
 const JOURNAL_BADGE = 'bg-blue-50 text-blue-700 border-blue-200';
 
@@ -24,6 +25,11 @@ export default function PublicationList({ publications, groupByYear = true }: Pu
         return acc;
       }, {} as Record<number, Publication[]>)
     : { 0: publications };
+
+  // 每年内按期刊排名排序
+  for (const year of Object.keys(grouped)) {
+    grouped[Number(year)].sort((a, b) => journalRank(a.journal) - journalRank(b.journal));
+  }
 
   const years = Object.keys(grouped).map(Number).sort((a, b) => b - a);
 
