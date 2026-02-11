@@ -116,7 +116,7 @@ export async function getTeamMembers(status?: 'Active' | 'Alumni'): Promise<Team
       } : undefined,
       sorts: [
         { property: 'Role', direction: 'ascending' },
-        { property: 'Join Year', direction: 'descending' },
+        { property: 'Join Year', direction: 'ascending' },
       ],
     });
 

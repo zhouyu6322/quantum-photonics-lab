@@ -12,13 +12,13 @@ export default function TeamMemberCard({ member, variant = 'default' }: TeamMemb
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
       {/* Photo */}
-      <div className={`relative ${isCompact ? 'aspect-square' : 'aspect-[3/4]'} bg-gray-100`}>
+      <div className="relative aspect-square bg-gray-100">
         {member.photo ? (
           <Image
             src={member.photo}
             alt={member.name}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             sizes={isCompact ? '(max-width: 768px) 50vw, 25vw' : '(max-width: 768px) 100vw, 33vw'}
           />
         ) : (

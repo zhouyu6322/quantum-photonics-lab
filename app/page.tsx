@@ -41,10 +41,10 @@ export default async function HomePage() {
               {/* Stats row */}
               <div className="flex flex-wrap gap-8 mb-10 text-center">
                 {[
-                  { value: '16+', label: 'Publications' },
+                  { value: '30+', label: 'Publications' },
                   { value: '4×', label: 'Nature Comms' },
                   { value: 'PRL', label: 'Phys. Rev. Lett.' },
-                  { value: 'LPR', label: 'Laser & Photonics Rev.' },
+                  { value: 'Sci. Adv.', label: 'Science Advances' },
                 ].map((stat) => (
                   <div key={stat.label}>
                     <div className="text-2xl font-bold text-blue-300">{stat.value}</div>
@@ -164,10 +164,12 @@ export default async function HomePage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
-              Principal Investigator
+              Principal Investigators
             </h2>
-            <div className="max-w-md mx-auto">
-              <TeamMemberCard member={pi[0]} />
+            <div className={`mx-auto grid grid-cols-1 gap-6 ${pi.length >= 2 ? 'md:grid-cols-2 max-w-3xl' : 'max-w-md'}`}>
+              {pi.map((member) => (
+                <TeamMemberCard key={member.id} member={member} />
+              ))}
             </div>
             <div className="text-center mt-10">
               <Link href="/team" className="inline-block text-blue-600 hover:text-blue-800 font-semibold">
